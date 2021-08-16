@@ -66,3 +66,20 @@ Kubectl get pods
 kubectl.exe get all --- lists all pod, services, deployment.apps, replicaset.apps 
 
 kubectl/kubectl.exe delete deployment.apps/<deploymentname> service/<servicename>
+ 
+ #Service Account with jq
+ echo $(kubectl get secret --namespace "${NAMESPACE}" "${SECRET_NAME}" -o json | jq-win64.exe -r '.data["ca.crt"]') 
+
+printf "token\\n" 
+
+echo $(kubectl get secret --namespace "${NAMESPACE}" "${SECRET_NAME}" -o json | jq-win64.exe -r '.data["token"]') 
+
+printf "namespace\\n" 
+
+echo $(kubectl get secret --namespace "${NAMESPACE}" "${SECRET_NAME}" -o json | jq-win64.exe -r '.data["namespace"]') 
+
+ 
+
+Certificate: Copy from terminal 
+
+Token: Base64 Decode 
